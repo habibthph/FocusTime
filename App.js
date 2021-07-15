@@ -51,7 +51,8 @@ useEffect(() => {
 
 useEffect(() => {
   saveFocusHistory();
-}, [FocusHistory])
+}, [FocusHistory]);
+
   return (
     <View style={styles.container}>{focusSubject ? 
     (

@@ -19,12 +19,17 @@ export const CountDown = ({
     if(time === 0 )
     {
       clearInterval(interval.current);
+      onEnd();
       return time;
     }
     const timeLeft = time - 1000;
     return timeLeft;
   })
 }
+
+useEffect(() => {
+  setMillis(minutesToMillis(minutes))
+}, [minutes]);
 
 useEffect (() => {
   onProgress(millis/minutesToMillis(minutes));
@@ -33,15 +38,13 @@ useEffect (() => {
   }
 }, [millis]);
 
-useEffect(() => {
-  setMillis(minutesToMillis(minutes))
-}, [minutes])
+
 
 useEffect(() => {
   if(isPaused)
   {
     if(interval.current)
-      clearInterval(interval.current)    
+      clearInterval(interval.current);    
     return;
   }
   interval.current = setInterval(countDown, 1000);
